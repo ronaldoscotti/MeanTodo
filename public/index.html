@@ -1,0 +1,61 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="meanTodo">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEANTodo</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style>
+        html { overflow-y: scroll; }
+        body { padding-top: 50px; }
+        #todo-list { margin-bottom: 30px; }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="core.js"></script>
+</head>
+
+<body ng-controller="mainController">
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>MEANTodo <span class="label label-info">{{ todos.length }}</span></h1>
+        </div>
+
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- Faz um looping em todos os To-dos em $scope.todos -->
+                <div class="checkbox" ng-repeat="todo in todos">
+                    <label>
+                        <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Formulário para criar to-dos -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <!-- Envia os dados para formData.text no Angular -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="O que você precisa fazer?"
+                        ng-model="formData.text">
+                    </div>
+
+                    <!-- createToDo() Cria novos to-dos -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
